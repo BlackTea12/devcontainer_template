@@ -1,0 +1,30 @@
+{
+    "name": "Bazel C++ DevContainer",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "features": {
+        "ghcr.io/devcontainers-community/features/bazel:1": {}
+    },
+    "runArgs": [
+        "--security-opt",
+        "label=disable",
+        "--userns=host",
+        "--hostname=cpp-bazel-dev"
+    ],
+    "mounts": [
+        "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,readonly"
+    ],
+    "remoteUser": "root",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack"
+            ],
+            "settings": {
+                "editor.formatOnSave": true
+            }
+        }
+    }
+}
