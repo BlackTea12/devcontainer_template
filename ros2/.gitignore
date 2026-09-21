@@ -1,0 +1,14 @@
+# --- colcon Build Artifacts ---
+build/
+install/
+log/
+
+# --- VS Code & IDE ---
+.vscode/*
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/c_cpp_properties.json
+
+# --- OS / System files ---
+.DS_Store
+Thumbs.db

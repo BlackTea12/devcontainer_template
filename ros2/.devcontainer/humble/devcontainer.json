@@ -1,0 +1,41 @@
+{
+    "name": "ROS 2 Humble DevContainer",
+    "build": {
+        "dockerfile": "../Dockerfile",
+        "args": {
+            "UBUNTU_VERSION": "22.04",
+            "ROS_DISTRO": "humble"
+        }
+    },
+    "runArgs": [
+        "--security-opt",
+        "label=disable",
+        "--userns=host",
+        "--hostname=ros2-humble-dev"
+    ],
+    "mounts": [
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/root/.gitconfig,type=bind,readonly",
+        // GUI forwarding: default is WSLg via Docker Desktop (Windows).
+        // On a Linux host, set X11_SOCKET_DIR=/tmp/.X11-unix and run `xhost +local:` first.
+        "source=${localEnv:X11_SOCKET_DIR:/run/desktop/mnt/host/wslg/.X11-unix},target=/tmp/.X11-unix,type=bind"
+    ],
+    "containerEnv": {
+        "DISPLAY": ":0",
+        "QT_X11_NO_MITSHM": "1",
+        "LIBGL_ALWAYS_SOFTWARE": "1"
+    },
+    "postCreateCommand": "rosdep update || true",
+    "remoteUser": "root",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "ms-vscode.cpptools-extension-pack",
+                "ms-iot.vscode-ros"
+            ],
+            "settings": {
+                "editor.formatOnSave": true
+            }
+        }
+    }
+}
