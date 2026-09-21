@@ -13,7 +13,7 @@
         "--hostname=cpp-bazel-dev"
     ],
     "mounts": [
-        "source=${localEnv:HOME}/.gitconfig,target=/root/.gitconfig,type=bind,readonly"
+        "source=${localEnv:HOME}${localEnv:USERPROFILE}/.gitconfig,target=/root/.gitconfig,type=bind,readonly"
     ],
     "remoteUser": "root",
     "customizations": {
